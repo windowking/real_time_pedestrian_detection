@@ -45,8 +45,12 @@ class Camera:
         self.logger = logging.getLogger('log')
 
         self.video_getter = VideoGetter(self.fps, cfg_camera, name, self.exc_bucket)
-        self.video_getter._init_rtsp_link()
-        self.cap = cv2.VideoCapture(self.video_getter.link)
+        if not self.video_getter.channel.split('.')[-1] in ['avi', 'wmv', 'mpeg', 'mp4', 'm4v', 'mov', 'asf', 'flv', 'f4v', 'rmvb', 'rm', '3gp', 'vob']:
+
+            self.video_getter._init_rtsp_link()
+            self.cap = cv2.VideoCapture(self.video_getter.link)
+        else:
+            self.cap = cv2.VideoCapture(self.video_getter.channel)
         self.width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         self.fps = int(self.cap.get(cv2.CAP_PROP_FPS))
@@ -83,7 +87,7 @@ class Camera:
             f_type = "rtsp"
         else:
             f_type = "flv"
-
+        
         #ffmpeg运行参数
         command = ['ffmpeg',
                 '-y',

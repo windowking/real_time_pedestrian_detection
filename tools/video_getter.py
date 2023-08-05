@@ -69,9 +69,6 @@ class VideoGetter:
     def _init_video_cap(self, path):
         """[DEBUG] 初始化本地视频准备抓取."""
         self.cap = cv2.VideoCapture(path)
-        self.width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-        self.height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        self.camera_fps = int(self.cap.get(cv2.CAP_PROP_FPS))
         self.per_score = 1 / 25 * self.fps
         self.frame_count = 1  # 满1则抓一张图. 从1开始可以把第一帧算上
 
