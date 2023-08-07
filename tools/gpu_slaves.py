@@ -28,7 +28,7 @@ class Gpuslave:
             q_pic_my: 待推理队列
         """
         self.name = name
-        self.img_resize = 1280
+        self.img_resize = 320
         self.cfg_model = cfg_model
         self.q_pic_my = q_pic_my
         self.exc_bucket = exc_bucket

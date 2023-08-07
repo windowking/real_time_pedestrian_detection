@@ -4,22 +4,19 @@ MODEL:
   DEVICE: "0"
   TYPES:  # 不同种类的模型
     MAN:
-      WEIGHTS: "./weights/man.pt"
+      WEIGHTS: "./weights/man.pt" 
       DEVICE: "0"
     
 #摄像机配置（可同时读取多个摄像头）
 CAMERA:
-  FPS: 20 #每秒读取图片数
+  FPS: 50 #每秒读取图片数
   DEVICES:
-    # '摄像头1':
-    #   IP: "192.168.0.25"
-    #   NAME: "admin"
-    #   PWD: "iic309311"
-    #   PORT: 554
-    #   MODEL_TYPES: ["man"]
-    #   RTMP/RTSP: "rtmp://127.0.0.1:1935/man/stream1"
-    
-    #测试视频
-    "test.mp4":
-      MODEL_TYPES: ["man"]
-      RTMP/RTSP: "rtmp://127.0.0.1:1935/man/test1"
+    '摄像头1':
+      IP: "192.168.0.25"
+      NAME: "admin"
+      PWD: "iic309311"
+      PORT: 554
+      MODEL_TYPES: ["man"] #模型类别
+      RTMP/RTSP: "rtsp://127.0.0.1:8554/man/stream1" #推流地址
+      OUTPUT_SIZE: 320 #输出视频流的清晰度，过大会导致画面卡顿
+      OUTPUT_FPS: 25 #输出视频流的帧数，过大会导致卡顿

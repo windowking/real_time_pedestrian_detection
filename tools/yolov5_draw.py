@@ -26,7 +26,8 @@ def draw_bboxes(image, bboxes, line_thickness=None):
             #矩形框绘制
             cv2.rectangle(image, c1, c2, color, thickness=tl, lineType=cv2.LINE_AA)
 
-            label = f"{lbl} {str(np.array(conf.cpu()))}"
+            conf = "{:.2f}".format(np.array(conf.cpu()))
+            label = f"{lbl} {str(conf)}"
             tf = max(tl - 1, 1)
             t_size = cv2.getTextSize(label, 0, fontScale=tl / 2, thickness=tf)[0]
             c2 = c1[0] + t_size[0], c1[1] - t_size[1] - 3
